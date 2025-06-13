@@ -1,6 +1,6 @@
 .\" -*- mode: troff; coding: UTF-8 -*-
 .\"TOPICS "ЗМІСТ:"
-.TH MC 1 "травня 2025" "Версія MC 4.8.33" "GNU Midnight Commander"
+.TH MC 1 "червня 2025" "Версія MC 4.8.33" "GNU Midnight Commander"
 .\"SKIP_SECTION"
 .SH "НАЗВА"
 mc \- Візуальний фаловий менеджер для Unix\-подібних систем.
@@ -359,15 +359,15 @@ or
 відкриває діалог жорсткого посилання.
 .TP
 .B C\-x s
-відкриває діалог абсолютного символьного посилання.
+відкриває діалог абсолютного символічного посилання.
 .TP
 .B C\-x v
-відкриває діалог відносного символьного посилання.
+відкриває діалог відносного символічного посилання.
 Дивіться розділ
 .\"LINK2"
 файлове меню
 .\"File Menu"
-для поглибленої інформацію щодо символьних посилань.
+для поглибленої інформацію щодо символічних посилань.
 .TP
 .B C\-x i
 переключає неактивну панель у режим інформації.
@@ -796,7 +796,7 @@ Alt\-p виводить останню команду, Alt\-n \- наступн�
 .B |
 для каналів,
 .B ~
-для символьниз посилань на каталогі, та
+для символічних посилань на каталогі, та
 .B !
 для недійсних посилань (посилань, які вказують в никуда).
 .TP
@@ -986,115 +986,93 @@ Midnight Commander використовує клавіши F1 \- F10 як ско
 .\"Parameters for external editor or viewer"
 щоб дізнатися як можна вказати розширені опції командного рядка для зовнішнього редактора.
 .PP
-.B Copy (F5)
+.B Копіювати (F5, S\-F5)
 .PP
-Press F5 to pop up an input dialog to copy the currently selected file (or
-the tagged files, if there is at least one file tagged) to the
-directory/filename you specify in the input dialog. The destination
-defaults to the directory in the non\-selected panel. Space for destination
-file may be preallocated relative to preallocate_space configure option.
-During this process, you can press C\-c or Esc to abort the operation.
-For details about source mask (which will be usually either * or ^\\(.*\\)$
-depending on setting of Use shell patterns) and possible wildcards in the
-destination see
+Після натискання F5 відкриється діалог копіювання виділеного файлу (або помічених
+файлів, якщо позначено хоча б один) у файл або каталог якій ви вкажете.
+По замовченню, копіювання відбувається у каталог, зазначений у неактивній панелі.
+Під час копіювання ви можете перервати процес, натиснувши C\-c або Esc.
+Для детального розгляду шаблонів та можливих шаблонних символів у кінцевому файлі, дивись
 .\"LINK2"
-Mask copy/rename\&.
+Шаблони копіювання/перейменування\&.
 .\"Mask Copy/Rename"
 .PP
-F15 (usually F15) is similar, but defaults to the directory in the
-selected panel. It always operates on the selected file, regardless of
-any tagged files.
+S\-F5 схожа, але типово результат зберігається у активній панелі.
+Ця команда завжди працює з виділеним файлом, не зважаючі на помічені файли.
 .PP
-On some systems, it is possible to do the copy in the background by
-clicking on the background button (or pressing Alt\-b in the dialog
-box).  The
+На деякіх системах є можливість копіювати файли у фоновому режимі. Для
+цього проібно клікнути мишкою на кнопці "На фоні", або натиснути Alt\-b.
 .\"LINK2"
-Background Jobs
+Фонові завдання
 .\"Background jobs"
-is used to control the background process.
+використовуються для контролю фонових процесів.
 .PP
-.B Link (C\-x l)
+.B Посилання (C\-x l)
 .PP
-Create a hard link to the current file.
+Створення жорсткого посилання на файл.
 .PP
-.B Absolute symlink (C\-x s)
+.B Абсолютне символічне посилання (C\-x s)
 .PP
-Create a absolute symbolic link to the current file.
+Створення абсолютного символічного посилання на файл.
 .PP
-.B Relative symLink (C\-x v)
+.B Відносне символічне посилання (C\-x v)
 .PP
-Create a relative symbolic link to the current file.
+Створення відносного символічного посилання на файл.
 .PP
-To those of you who don't know what links are: creating a link to a file
-is a bit like copying the file, but both the source filename and the destination
-filename represent the same file image. For example, if you edit one of these
-files, all changes you make will appear in both files. Some people call
-links aliases or shortcuts.
+Для тих з вас хто не знає що таке посилання: створення посилання на файл (або каталог),
+чимось схоже на копіювання файлу, але обидві назви файлів, початкова та кінцева, вказують
+на один і той самий файл. Наприклад, якщо ви редагуєте файл по посиланню, зміни з'являться
+у обох файлах. Деякі люди називають посилання ярликом.
 .PP
-A hard link appears as a real file. After making it, there is no way of
-telling which one is the original and which is the link. If you delete
-either one of them the other one is still intact. It is very difficult
-to notice that the files represent the same image. Use hard links when
-you don't even want to know.
+Жорстке посилання погодиться як справжній файл. Після його створення, немоливо
+точно вказати що є оригінальним файлом, а що посиланням. Якщо ви знищіте один з них,
+другій залишиться неушкодженим. Дуже тяжко зрозуміти що представляє власне сам файл.
+Файл буде існувати доки є хочаб одне посилання на нього.
 .PP
-A symbolic link is a reference to the name of the original file. If
-the original file is deleted the symbolic link is useless. It is quite
-easy to notice that the files represent the same image. Midnight
-Commander shows an "@"\-sign in front of the file name if it is a
-symbolic link to somewhere (except to directory, where it shows a tilde (~)).
-The original file which the link points to is shown on mini\-status line if the
-.I "Show mini\-status"
-option is enabled. Use symbolic links when you want to avoid the
-confusion that can be caused by hard links.
+Символічне посилання, це посилання на назву оригінального файлу. Якщо видалити оригінальний
+файл, символічним посиланням неможливо буде скористатися. Досить легко визначити яка назва
+представляє сам файл, а яка посилання на нього.  Midnight Commander показує
+"@"\-знак попереду назви файлу, якщо це символічне посилання (за виключенням каталогів, посилання 
+на каталог позначається тільдою (~)). Файл на якій вказує посилання можна побачити у стрічці міністатусу, якщо 
+увімкнена опція
+.I "Показувати міні\-статус"
 .PP
-When you press "C\-x s" Midnight Commander will automatically fill in the
-complete path+filename of the original file and suggest a name for the link.
-You can change either one.
+Коли ви натискаєте "C\-x s" Midnight Commander автоматично запвнює повний шлях та назву 
+оригінального файлу на відповідного посилання. Ви можете змінити їх.
 .PP
-Sometimes you may want to change the absolute path of the original into
-a relative path. An absolute path starts from the root directory:
+Іноді вам стане в нагоді заміна абсолютного шляху у посиланнях на відносний.
+Абсолютний шлях починається від кореню файлової системи:
 .PP
 .I /home/frodo/mc/mc \-> /home/frodo/new/mc
 .PP
-A relative link describes the original file's location starting from the
-location of the link itself:
+Відносне посилання вказує на оригінальний файл від каталогу, в якому знаходиться посилання:
 .PP
 .I /home/frodo/mc/mc \-> ../new/mc
 .PP
-You can force Midnight Commander to suggest a relative path by pressing
-"C\-x v" instead of "C\-x s".
+Ви можете заставити Midnight Commander використовувати відносне посилання натиснувши
+"C\-x v" замість "C\-x s".
 .PP
-.B Rename/Move (F6, F16)
+.B Перемістити (F6, S\-F6)
 .PP
-Press F6 to pop up an input dialog to copy the currently selected file (or
-the tagged files, if there is at least one file tagged) to the
-directory/filename you specify in the input dialog.  The destination
-defaults to the directory in the non\-selected panel. For more details
-look at Copy (F5) operation above, most of the things are quite similar.
+Натисніть F6 для відкриття діалогу переміщення виділеного файлу (або позначених
+файлів, якщо є позначені) до каталогу або нової назви, які ви вкажете.
+По замовчанню, назва каталогу береться з неактивної панелі.
 .PP
-F16 (usually F16) is similar, but defaults to the directory in the
-selected panel. It always operates on the selected file, regardless of
-any tagged files.
+S\-F6 схожа, але використовує у якості каталогі призначення той самий, що і у вихідного файлу.
+Ця комбінація завжди працює з позначеним файлом, навіть якщо є виділені.
 .PP
-On some systems, it is possible to do the copy in the background by
-clicking on the background button (or pressing Alt\-b in the dialog
-box).  The
-.\"LINK2"
-Background Jobs
-.\"Background jobs"
-is used to control the background process.
 .PP
-.B Mkdir (F7)
+.B СтвКат (F7)
 .PP
-Pop up an input dialog and creates the directory specified.
+Відкриває діалог та створює вказаний в ньому каталог. У якості назви за замовченням пропонується назва
+позначеного файлу/каталогу.
 .PP
-.B Delete (F8)
+.B Видалити (F8)
 .PP
-Delete the currently selected file or the tagged files in the
-currently selected panel. During the process, you can press C\-c or
-Esc to abort the operation.
+Видаляє виділений файл, або помічені файли у активній панелі. Під час видалення, можна натиснути
+C\-c або Esc для переривання операції.
 .PP
-.B Quick cd (Alt\-c)
+.B Швидка зміна каталогу (Alt\-c)
 Use the
 .\"LINK2"
 quick cd
